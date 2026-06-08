@@ -22,3 +22,21 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code personal settings
+.claude/settings.local.json
+CLAUDE.local.md
+
+# Hook logs and debug files
+*.log
+post-log.json
+
+# Session transcripts (si existen)
+.claude/transcripts/
+.claude/sessions/
+
+# CodeGraph
+.codegraph/
+.codegraph.lock
+*.db
+*.log

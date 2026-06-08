@@ -1,15 +1,11 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import type { CreateVehicleInput, Vehicle } from "../types/vehicle.types";
+import type { CreateVehicleInput } from "../types/vehicle.types";
 import { vehicleSchema } from "../schemas/vehicle.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast, Toaster } from "react-hot-toast";
 import { useCreateVehicle } from "../hooks/useVehicles";
 
-export default function VehicleForm({
-  onSuccess,
-}: {
-  onSuccess?: (newVehicle: Vehicle) => void | Promise<void>;
-}) {
+export default function VehicleForm() {
   const createVehicleMutation = useCreateVehicle();
 
   const {
@@ -23,10 +19,9 @@ export default function VehicleForm({
 
   const onSubmit: SubmitHandler<CreateVehicleInput> = async (data) => {
     createVehicleMutation.mutate(data, {
-      onSuccess: (newVehicle) => {
+      onSuccess: () => {
         toast.success("Vehicle added successfully!");
         reset();
-        onSuccess?.(newVehicle);
       },
       onError: (error) => {
         console.error("Error adding vehicle:", error);
